@@ -22,7 +22,6 @@
         "tough-cookie": "^3.0.1",
         "yargs": "^14.2.0"
     },
-    "devDependencies": {},
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
