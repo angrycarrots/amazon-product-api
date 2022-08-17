@@ -1,9 +1,16 @@
 import React,{Component} from 'react';
 import io from 'socket.io-client';
-import DataGrid from 'react-data-grid';
+import { DataGrid } from '@mui/x-data-grid';
+import TextField from '@mui/material/TextField';
+import {GridToolbar} from '@mui/x-data-grid-pro';
+import Box from '@mui/material/Box';
+import { styled } from '@mui/material/styles';
+
+
+
 // import React, { useState, useEffect } from 'react';
 
-const socket = io("localhost:3002");
+const socket = io("localhost:3000");
 
 class MainForm extends Component {
     constructor(props){
@@ -12,6 +19,7 @@ class MainForm extends Component {
             search:'',
             isConnected:socket.connected,
             lastPong:'',
+            isAntDesign:true,
             results:{},
             rows:'ASC'
         }
@@ -27,11 +35,7 @@ class MainForm extends Component {
             this.setState({isConnected:false})
             // setIsConnected(false);
           });
-      
-        //   socket.on('pong', () => {
-        //     this.setState({lastPong:new Date().toISOString()})
-        //     // setLastPong(new Date().toISOString());
-        //   });
+    
 
           socket.on('results', (data) => {
             // console.log('results',data)
@@ -57,65 +61,107 @@ class MainForm extends Component {
 
 
     }
+
+    keyPress=(e)=>{
+      if(e.keyCode === 13){
+        //  console.log('value', e.target.value);
+         this.doit()
+         // put the login here
+      }
+   }
     
     render() {
 
+      
 
-        const sortRows = (initialRows, sortColumn, sortDirection) => rows => {
-            const comparer = (a, b) => {
-              if (sortDirection === "ASC") {
-                return a[sortColumn] > b[sortColumn] ? 1 : -1;
-              } else if (sortDirection === "DESC") {
-                return a[sortColumn] < b[sortColumn] ? 1 : -1;
-              }
-            };
-            return sortDirection === "NONE" ? initialRows : [...rows].sort(comparer);
-          };
-        
+      const StyledBox = styled(Box)(({ theme }) => ({
+        display: 'flex',
+        flexDirection: 'column',
+        height: 600,
+        width: '100%',
+        '& .MuiFormGroup-options': {
+          alignItems: 'center',
+          paddingBottom: theme.spacing(1),
+          '& > div': {
+            minWidth: 100,
+            margin: theme.spacing(2),
+            marginLeft: 0,
+          },
+        },
+      }));
+
+
         
 
         var table = []
         const columns = [
-            {key:'title', sortable:true, resizable: true, name:'Title'},
-            {key:'price', sortable:true, resizable: true, name:'Price'},
-            {key: 'unit', sortable:true, resizable: true, name:'Unit'},
-            {key:'discount', sortable:true, resizable: true, name:'Discount'},
-            {key:'rating', sortable:true, resizable: true, name:'Rating'},
-            {key:'reviews', sortable:true, resizable: true, name:'Reviews'},
-            {key:'prime', sortable:true, resizable: true, name:'Prime'},
+            {field:'title', headerName:'Title',renderCell: (params)=>{ return <a target='_blank'  rel='noreferrer' href={params.row.url}>{params.row.title}</a>},flex:150,resizable:true},
+            {field:'price', headerName:'Price',flex:50,resizable:true},
+            {field: 'unit', headerName:'Unit',flex:70,resizable:true},
+            {field:'discount', headerName:'Discount',flex:50,resizable:true},
+            {field:'rating', headerName:'Rating',flex:50,resizable:true},
+            {field:'reviews', headerName:'Reviews',flex:50,resizable:true},
+            {field:'score', headerName:'Score',flex:50,resizable:true},
+            {field:'ad', headerName:'Ad',flex:25,resizable:true},
+            {field:'prime', headerName:'Prime',flex:25,resizable:true},
           ];
         if(Object.keys(this.state.results).length>0){
-            console.log(this.state.results['result'])
+            // console.log(this.state.results['result'])
             // table = <DataGrid columns={columns} rows={this.state.results['result']}/>
             table = this.state.results['result'].map(function(item,i){
-                return {'title':<a href={item.url} target='_blank'>{item.title}</a>,
+                return {
+                'id':i,
+                'title':item.title,
                 'price':item.price.current_price,
                 'unit': item.price.base,
                 'discount':item.price.discounted ? 'Yes' : '',
-                'rating':item.reviews.rating,
-                'reviews':item.reviews.total_reviews,
+                'rating':Number(item.reviews.rating),
+                'reviews':Number(item.reviews.total_reviews),
                 'prime':item.amazonPrime ? 'Yes' : '',
+                'url':item.url,
+                'ad':item.sponsered ? 'Yes' : '',
+                'score':Number(item.score)
                  }
             })
-            console.log('table',table)
+            // console.log('table',table)
+            // console.log('columns',columns)
         }
         return (
-            <div className='inputparams'>
+            <div className='inputparams' style={{ height:1000, width: '100%' }}>
+              <Box
+                component="form"
+                sx={{
+                  '& .MuiTextField-root': { m: 1, width: '90%',textAlign:'center' },
+                }}
+                noValidate
+                autoComplete="off"
+              >
+              <TextField
+                id="outlined-name"
+                label="Product search"
+                value={this.state.search}
+                onChange={this.handleChange}
+                onKeyDown={this.keyPress}
+                fullWidth={true}
+              />
 
-           <input
-               type="text"
-               value={this.state.search}
-               onChange={this.handleChange}
-            />
-            <button onClick={this.doit}>Search</button>
-            <DataGrid  rows={table} 
-                  columns={columns}
-                  onGridSort={(sortColumn, sortDirection) =>
-                        this.setState({rows:sortRows(100, sortColumn, sortDirection)})}
-                    minHeight={1000}
-            />
-
-            </div>
+              <div style={{ display: 'flex',height:900 }}>
+                  <div style={{ flexGrow: 1 }}>
+                    <DataGrid
+                      rows={table} 
+                      columns={columns}
+                      components={{
+                        Toolbar: GridToolbar,
+                      }}
+                      componentsProps={{
+                        toolbar: { showQuickFilter: true },
+                      }}
+                      rowThreshold={0}
+                    />
+                  </div>
+              </div>
+          </Box>
+        </div>
         );
    
     }
