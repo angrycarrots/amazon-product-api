@@ -236,7 +236,7 @@ class AmazonScraper {
 
         this.sortAndFilterResult();
 
-        await this.saveResultToFile();
+        // await this.saveResultToFile();
 
         if (this.cli) {
             spinner.stop();
@@ -249,6 +249,7 @@ class AmazonScraper {
             ...(this.scrapeType === 'reviews' ? { ...this.reviewMetadata } : {}),
             result: this.collector,
         };
+        // return this.collector
     }
 
     /**
