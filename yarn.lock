@@ -6741,6 +6741,13 @@
   "resolved" "https://registry.npmjs.org/node-releases/-/node-releases-2.0.6.tgz"
   "version" "2.0.6"
 
+"node-windows@file:../../TOOLS/anaconda3/envs/bs/node_modules/node-windows":
+  "resolved" "file:../../TOOLS/anaconda3/envs/bs/node_modules/node-windows"
+  "version" "1.0.0-beta.8"
+  dependencies:
+    "xml" "1.0.1"
+    "yargs" "^17.5.1"
+
 "normalize-path@^3.0.0", "normalize-path@~3.0.0":
   "integrity" "sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA=="
   "resolved" "https://registry.npmjs.org/normalize-path/-/normalize-path-3.0.0.tgz"

@@ -13,6 +13,14 @@ The starting point is @Drawrowfly's excellent script for interogating Amazon.  T
 
 What you get is a barebones fully functional Amazon search engine that presents results in a filterable/sortable/searchable table.
 
+## (Optional) Install as a Service
+1. install node-windows https://github.com/coreybutler/node-windows
+a. As admin: npm install -g node-windows
+b. As admin: npm link node-windows  (run from project root)
+2. node install_as_service.js
+
+To uninstall windows service: node uninstall_as_service.js
+
 # Amazon Product Api (Unofficial)
 
 ![NPM](https://img.shields.io/npm/l/amazon-buddy.svg?style=for-the-badge) ![npm](https://img.shields.io/npm/v/amazon-buddy.svg?style=for-the-badge)
