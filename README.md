@@ -1,3 +1,18 @@
+
+# Fork of Darwrowfly's Amazon Product API (Even less Official)
+(see below)
+
+The starting point is @Drawrowfly's excellent script for interogating Amazon.  This Fork is a brutal hack of her great tool to transform it into a convenient web service.
+
+## Installation
+1. npm install
+2. npm run build
+
+## Execution
+1. node web.js - this will start a web page service on port 3000.
+
+What you get is a barebones fully functional Amazon search engine that presents results in a filterable/sortable/searchable table.
+
 # Amazon Product Api (Unofficial)
 
 ![NPM](https://img.shields.io/npm/l/amazon-buddy.svg?style=for-the-badge) ![npm](https://img.shields.io/npm/v/amazon-buddy.svg?style=for-the-badge)

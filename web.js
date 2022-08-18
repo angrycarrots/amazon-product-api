@@ -1,5 +1,5 @@
-const AmazonScraper = require('./Amazon');
-const { geo, defaultItemLimit } = require('./constant');
+const AmazonScraper = require('./lib/Amazon');
+const { geo, defaultItemLimit } = require('./lib/constant');
 const express = require('express');
 const app = express();
 const http = require('http');
