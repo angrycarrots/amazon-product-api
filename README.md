@@ -4,7 +4,7 @@
 
 The starting point is @Drawrowfly's excellent script for interogating Amazon.  This Fork is a brutal hack of her great tool to transform it into a convenient web service.
 
-## Installation
+## (Optional) Compile web page
 1. npm install
 2. npm run build
 
