@@ -34,72 +34,6 @@ const INIT_OPTIONS = {
 };
 
 
-// exports.products = async (options) => {
-//     options = { ...INIT_OPTIONS, ...options };
-//     options.geo = geo[options.country] ? geo[options.country] : geo['US'];
-//     options.scrapeType = 'products';
-//     if (!options.bulk) {
-//         options.asyncTasks = 1;
-//     }
-//     try {
-//         const data = await new AmazonScraper(options).startScraper();
-//         return data;
-//     } catch (error) {
-//         throw error;
-//     }
-// };
-
-// exports.reviews = async (options) => {
-//     options = { ...INIT_OPTIONS, ...options };
-//     options.geo = geo[options.country] ? geo[options.country] : geo['US'];
-//     options.scrapeType = 'reviews';
-//     if (!options.bulk) {
-//         options.asyncTasks = 1;
-//     }
-//     try {
-//         const data = await new AmazonScraper(options).startScraper();
-//         return data;
-//     } catch (error) {
-//         throw error;
-//     }
-// };
-
-// exports.asin = async (options) => {
-//     options = { ...INIT_OPTIONS, ...options };
-//     options.geo = geo[options.country] ? geo[options.country] : geo['US'];
-//     options.scrapeType = 'asin';
-//     options.asyncTasks = 1;
-//     try {
-//         const data = await new AmazonScraper(options).startScraper();
-//         return data;
-//     } catch (error) {
-//         throw error;
-//     }
-// };
-
-// exports.categories = async (options) => {
-//     options = { ...INIT_OPTIONS, ...options };
-//     options.geo = geo[options.country] ? geo[options.country] : geo['US'];
-//     try {
-//         const data = await new AmazonScraper(options).extractCategories();
-//         return data;
-//     } catch (error) {
-//         throw error;
-//     }
-// };
-
-// exports.countries = async () => {
-//     const output = [];
-//     for (let item in geo) {
-//         output.push({
-//             country: geo[item].country,
-//             country_code: item,
-//             currency: geo[item].currency,
-//             host: geo[item].host,
-//         });
-//     }
-//     return output;
-// };
 
 app.use(express.static(__dirname + '/build'));
 
@@ -136,7 +70,7 @@ io.on('connection', (socket) => {
       });
 
 
-var port = 3000;
+var port = 3030;
 server.listen(port, () => {
     console.log('listening on *:',port);
     });

@@ -4,12 +4,25 @@
 
 The starting point is @Drawrowfly's excellent script for interogating Amazon.  This Fork is a brutal hack of her great tool to transform it into a convenient web service.
 
+## Initialize
+~~~
+npm install
+~~~
+
 ## (Optional) Compile web page
-1. npm install
-2. npm run build
+~~~
+npm run build
+~~~
 
 ## Execution
-1. node web.js - this will start a web page service on port 3000.
+~~~
+node web.js 
+~~~
+This will start a web page service on port 3030
+
+~~~
+http://localhost:3030
+~~~
 
 What you get is a barebones fully functional Amazon search engine that presents results in a filterable/sortable/searchable table.
 
