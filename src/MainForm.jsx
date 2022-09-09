@@ -10,7 +10,7 @@ import { styled } from '@mui/material/styles';
 
 // import React, { useState, useEffect } from 'react';
 
-const socket = io("localhost:3000");
+const socket = io("localhost:3030");
 
 class MainForm extends Component {
     constructor(props){
