@@ -4,6 +4,20 @@
 
 The starting point is @Drawrowfly's excellent script for interogating Amazon.  This Fork is a brutal hack of her great tool to transform it into a convenient web service.
 
+## Docker
+This is the easiest way to try (make sure Docker is installed):
+
+~~~
+docker run -dit --restart unless-stopped -p 3030:3030 mathanas/amz-shopper
+~~~
+
+From a web browser:
+~~~
+http://localhost:3030
+~~~
+
+# Advanced - Build from source
+
 ## Initialize
 ~~~
 npm install
