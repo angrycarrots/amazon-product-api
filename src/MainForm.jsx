@@ -64,7 +64,7 @@ class MainForm extends Component {
 
     keyPress=(e)=>{
       if(e.keyCode === 13){
-        //  console.log('value', e.target.value);
+         console.log('value', e.target.value);
          this.doit()
          // put the login here
       }
@@ -92,7 +92,7 @@ class MainForm extends Component {
             {field:'prime', headerName:'Prime',flex:25,resizable:true},
           ];
         if(Object.keys(this.state.results).length>0){
-            // console.log(this.state.results['result'])
+            console.log(this.state.results['result'])
             // table = <DataGrid columns={columns} rows={this.state.results['result']}/>
             table = this.state.results['result'].map(function(item,i){
                 return {
